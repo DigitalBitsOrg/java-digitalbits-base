@@ -2,8 +2,6 @@
 
 Use [java-stellar-sdk](https://github.com/stellar/java-stellar-sdk) instead.
 
-![Build Status](https://travis-ci.com/DigitalBitsOrg/java-digitalbits-base.svg?token=mhfQvWdLDUSzoJNpk1fJ&branch=master)
-
 ## java-stellar-base
 
 [![Build Status](https://travis-ci.org/stellar/java-stellar-base.svg)](https://travis-ci.org/stellar/java-stellar-base)
