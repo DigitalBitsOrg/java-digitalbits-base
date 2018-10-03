@@ -1,11 +1,11 @@
-import org.stellar.base.Asset;
-import org.stellar.base.ChangeTrustOperation;
-import org.stellar.base.Keypair;
-import org.stellar.base.PaymentOperation;
-import org.stellar.base.Transaction;
-import org.stellar.sdk.Account;
-import org.stellar.sdk.Server;
-import org.stellar.sdk.SubmitTransactionResponse;
+import io.digitalbits.base.Asset;
+import io.digitalbits.base.ChangeTrustOperation;
+import io.digitalbits.base.Keypair;
+import io.digitalbits.base.PaymentOperation;
+import io.digitalbits.base.Transaction;
+import io.digitalbits.sdk.Account;
+import io.digitalbits.sdk.Server;
+import io.digitalbits.sdk.SubmitTransactionResponse;
 
 import java.io.IOException;
 
@@ -30,19 +30,19 @@ public class BuildTrust {
 
 
   public static void main(String[] args) throws IOException {
-    final Server stellarServer = new Server("https://horizon-testnet.stellar.org");
+    final Server digitalbitsServer = new Server("https://frontier.testnet.digitalbits.io");
 
     //Build trust.
     System.out.println("Build trust...");
     final SubmitTransactionResponse coolProgrammerTrustsCommunityResponse =
-        coolProgrammerTrustsCommunity(stellarServer, 2000);
+        coolProgrammerTrustsCommunity(digitalbitsServer, 2000);
     printResponse(coolProgrammerTrustsCommunityResponse);
 
     //Transfer street creds.  If this fails, check if the community has enough lumens for the
     //transfer fees.
     System.out.println("Pay street creds...");
     final SubmitTransactionResponse communityPaysItsDueResponse =
-        communityPaysItsDue(stellarServer, 100);
+        communityPaysItsDue(digitalbitsServer, 100);
     printResponse(communityPaysItsDueResponse);
   }
 
@@ -50,19 +50,19 @@ public class BuildTrust {
    * Creates a trustline between the programmer and the community.  This makes it possible for the
    * programmer to accept credits from the community.
    *
-   * @param stellarServer The Server to exercise this on.
+   * @param digitalbitsServer The Server to exercise this on.
    * @param maximumAmount The maximum amount of trust.
    * @return The response that the server returns.
    *
    * @throws IOException
    */
-  private static SubmitTransactionResponse coolProgrammerTrustsCommunity(final Server stellarServer,
+  private static SubmitTransactionResponse coolProgrammerTrustsCommunity(final Server digitalbitsServer,
                                                  final int maximumAmount)
       throws IOException
   {
     //Get the account with the current ledger number.
     final Account coolProgrammerAccount =
-        stellarServer.accounts().account(COOL_PROGRAMMER_ACCOUNT_KEY_PAIR);
+        digitalbitsServer.accounts().account(COOL_PROGRAMMER_ACCOUNT_KEY_PAIR);
 
     //Create a trust line.  The programmer trusts the community.
     //Add this operation to the transaction.
@@ -79,24 +79,24 @@ public class BuildTrust {
     trustTransaction.sign(COOL_PROGRAMMER_ACCOUNT_KEY_PAIR);
 
     //And the transaction gets sent off to the server.
-    return stellarServer.submitTransaction(trustTransaction);
+    return digitalbitsServer.submitTransaction(trustTransaction);
   }
 
   /**
    * The community transfers street cred to the programmer
    *
-   * @param stellarServer The Server to exercise this on.
+   * @param digitalbitsServer The Server to exercise this on.
    * @param amount how much street cred the programmer is receiving.
    * @return The response that the server returns.
    *
    * @throws IOException
    */
-  private static SubmitTransactionResponse communityPaysItsDue(final Server stellarServer,
+  private static SubmitTransactionResponse communityPaysItsDue(final Server digitalbitsServer,
                                                                final int amount)
       throws IOException
   {
     //Get the account with the current ledger number.
-    final Account sourceAccount = stellarServer.accounts().account(COMMUNITY_ACCOUNT_KEY_PAIR);
+    final Account sourceAccount = digitalbitsServer.accounts().account(COMMUNITY_ACCOUNT_KEY_PAIR);
 
     //Create a payment transaction.  Source is the community, and target is the programmer.
     final Transaction.Builder transferTransactionBuilder =
@@ -114,12 +114,12 @@ public class BuildTrust {
     transferTransaction.sign(COMMUNITY_ACCOUNT_KEY_PAIR);
 
     //And the transaction gets sent off to the server.
-    return stellarServer.submitTransaction(transferTransaction);
+    return digitalbitsServer.submitTransaction(transferTransaction);
   }
 
   /**
    * Output the contents of the response to the console.
-   * @param response the response from the Stellar Server
+   * @param response the response from the digitalbits Server
    */
   private static void printResponse(final SubmitTransactionResponse response) {
 

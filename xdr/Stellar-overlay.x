@@ -4,7 +4,7 @@
 
 %#include "xdr/Stellar-ledger.h"
 
-namespace stellar
+namespace digitalbits
 {
 
 enum ErrorCode

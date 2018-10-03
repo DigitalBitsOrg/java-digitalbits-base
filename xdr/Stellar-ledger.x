@@ -4,7 +4,7 @@
 
 %#include "xdr/Stellar-transaction.h"
 
-namespace stellar
+namespace digitalbits
 {
 
 typedef opaque UpgradeType<128>;

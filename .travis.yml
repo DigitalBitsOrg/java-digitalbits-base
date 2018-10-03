@@ -4,8 +4,8 @@ deploy:
   provider: releases
   api_key:
     secure: r/Q92WURxF+xxjC/msKlN0Q7DFUoHvCkbPYcKJ5obziYReFIte95Gtg3EUP7iq7C5RWuZ4qPwsdlWwDZMe2AKA1a500YsFmHWKDoCkVuMSC8vpv/xghufkyy1TW3yiGzfE3eUUK96F9HrJSR+YhCQOlHBcj2Xm8UQGiZ+3QMXum7F6TFR01ilbqrHURM6iRu+SWcjZ7/NLyo9RKCCysL0K8eRWZVyPyxvcXgcr1qWD08NDfOXvAfhnW4rznsMKqqXUZOX3RIyJL+Az4cMi4roztKE2UaOIm3lXR1e1erWSe4GBUdB1KyuSGlqIfkx8EvVFxodkp3KLpvwSJ/qrx5gHGtP36zYBlkfyhbO8rpmy+haThbrTR+YTv/AjeHQSKZf6vn4E5GcxKWdZ22tY9ID0bPWb8XK3hvFqDMZ+zlKPklOoY+qBB+3JDyfeHVoNoYvqzm+PtCq4IV+kr6nve0H2kr8h4F0WYAacTWdSxM50H81fSYeH4O11Ywy/f/jafFlvgSrmAPgJnRDuLppH8+bVnIEgapeTW4HBKF50A13sCL86ADF6WFvE5lMoGXbTpr0pNNDZO5BagpOppOkVN7ofnr/Qulg8O60z/DHtRqISMv6175qw4TqzOhXKcKaMzIw1r4IsdaH0zz76q/FawEgvSrWU7mUVlmU+USLTPaOFc=
-  file: "./build/libs/stellar-base.jar"
+  file: "./build/libs/digitalbits-base.jar"
   skip_cleanup: true
   on:
-    repo: stellar/java-stellar-base
+    repo: digitalbitsorg/java-digitalbits-base
     tags: true

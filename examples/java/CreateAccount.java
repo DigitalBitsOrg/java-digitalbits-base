@@ -1,10 +1,10 @@
-import org.stellar.base.CreateAccountOperation;
-import org.stellar.base.Keypair;
-import org.stellar.base.Memo;
-import org.stellar.base.Transaction;
-import org.stellar.sdk.Account;
-import org.stellar.sdk.Server;
-import org.stellar.sdk.SubmitTransactionResponse;
+import io.digitalbits.base.CreateAccountOperation;
+import io.digitalbits.base.Keypair;
+import io.digitalbits.base.Memo;
+import io.digitalbits.base.Transaction;
+import io.digitalbits.sdk.Account;
+import io.digitalbits.sdk.Server;
+import io.digitalbits.sdk.SubmitTransactionResponse;
 
 import java.io.IOException;
 
@@ -16,7 +16,7 @@ import java.io.IOException;
  */
 public class CreateAccount {
   public static void main(String[] args) throws IOException {
-    final Server stellarServer = new Server("https://horizon-testnet.stellar.org");
+    final Server digitalbitsServer = new Server("https://frontier.testnet.digitalbits.io");
 
     // Create a public and private key for the new account.
     final Keypair newAccountKeyPair = Keypair.random();
@@ -24,7 +24,7 @@ public class CreateAccount {
 
     // Get the private key and the ledger number for the existing account.
     final Keypair existingAccountKeyPair = Keypair.fromSecretSeed("SBB4LZ6OHDFNPGOBVUW3VJ4YJPYMJ7GJM5RBYTD6L7YPMSUGVMLLI5LK");
-    final Account existingAccount = stellarServer.accounts().account(existingAccountKeyPair);
+    final Account existingAccount = digitalbitsServer.accounts().account(existingAccountKeyPair);
 
     //Create a transaction for the existing account which sets up the new account.
     final Transaction.Builder transactionBuilder = new Transaction.Builder(existingAccount);
@@ -38,11 +38,11 @@ public class CreateAccount {
 
     final Transaction createAccountTransaction = transactionBuilder.build();
 
-    //Sign this transaction with the new account, and then submit it to the stellar server.
+    //Sign this transaction with the new account, and then submit it to the digitalbits server.
     createAccountTransaction.sign(existingAccountKeyPair);
 
     System.out.println("Creating account...");
-    final SubmitTransactionResponse createAccountResponse = stellarServer.submitTransaction(createAccountTransaction);
+    final SubmitTransactionResponse createAccountResponse = digitalbitsServer.submitTransaction(createAccountTransaction);
     printResponse(createAccountResponse);
   }
 

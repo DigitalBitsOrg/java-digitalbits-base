@@ -3,7 +3,7 @@ Bundler.setup()
 
 namespace :xdr do
 
-  # As stellar-core adds more .x files, we'll need to update this array
+  # As digitalbits-core adds more .x files, we'll need to update this array
   # Prior to launch, we should be separating our .x files into a separate
   # repo, and should be able to improve this integration.
   HAYASHI_XDR = [
@@ -25,7 +25,7 @@ namespace :xdr do
 
     HAYASHI_XDR.each do |src|
       local_path = "xdr/" + File.basename(src)
-      encoded    = client.contents("stellar/stellar-core", path: src).content
+      encoded    = client.contents("digitalbits/digitalbits-core", path: src).content
       decoded    = Base64.decode64 encoded
 
       IO.write(local_path, decoded)
@@ -36,13 +36,13 @@ namespace :xdr do
     require "pathname"
     require "xdrgen"
     require 'fileutils'
-    FileUtils.rm_rf "src/main/java/org/stellar/base/xdr"
+    FileUtils.rm_rf "src/main/java/io/digitalbits/base/xdr"
 
     paths = Pathname.glob("xdr/**/*.x")
     compilation = Xdrgen::Compilation.new(
       paths,
-      output_dir: "src/main/java/org/stellar/base/xdr",
-      namespace:  "org.stellar.base.xdr",
+      output_dir: "src/main/java/io/digitalbits/base/xdr",
+      namespace:  "io.digitalbits.base.xdr",
       language:   :java
     )
     compilation.compile

@@ -1,4 +1,4 @@
-import org.stellar.base.*;
+import io.digitalbits.base.*;
 
 public class StellarExample {
   public static void main(String [] args) {

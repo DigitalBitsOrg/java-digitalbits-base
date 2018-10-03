@@ -1,4 +1,4 @@
-import org.stellar.base._;
+import io.digitalbits.base._;
 
 object StellarExample {
   def main(args: Array[String]) {

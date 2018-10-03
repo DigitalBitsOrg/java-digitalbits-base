@@ -4,7 +4,7 @@
 
 %#include "xdr/Stellar-types.h"
 
-namespace stellar
+namespace digitalbits
 {
 
 typedef PublicKey AccountID;
