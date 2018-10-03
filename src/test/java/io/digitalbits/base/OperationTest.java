@@ -216,7 +216,7 @@ public class OperationTest {
     Integer lowThreshold = 2;
     Integer mediumThreshold = 3;
     Integer highThreshold = 4;
-    String homeDomain = "digitalbits.io";
+    String homeDomain = "stellar.org";
     Integer signerWeight = 1;
 
     SetOptionsOperation operation = new SetOptionsOperation.Builder()
@@ -257,7 +257,7 @@ public class OperationTest {
     // GC5SIC4E3V56VOHJ3OZAX5SJDTWY52JYI2AFK6PUGSXFVRJQYQXXZBZF
     KeyPair source = KeyPair.fromSecretSeed("SC4CGETADVYTCR5HEAVZRB3DZQY5Y4J7RFNJTRA6ESMHIPEZUSTE2QDK");
 
-    String homeDomain = "digitalbits.io";
+    String homeDomain = "stellar.org";
 
     SetOptionsOperation operation = new SetOptionsOperation.Builder()
         .setHomeDomain(homeDomain)
